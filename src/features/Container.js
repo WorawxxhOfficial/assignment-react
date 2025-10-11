@@ -1,12 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
 function Container({ children }) {
-  return <main>{children}</main>;
+  return (
+    <main className="container">
+      {children}
+    </main>
+  );
 }
-
-Container.propTypes = {
-  children: PropTypes.node.isRequired
-};
-
 export default Container;

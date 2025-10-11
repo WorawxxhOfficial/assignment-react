@@ -1,6 +1,4 @@
-import React from 'react';
-
-export default function Navbar() {
+function Navbar() {
   return (
     <header>
       <a href="/" className="brand">
@@ -10,3 +8,4 @@ export default function Navbar() {
     </header>
   );
 }
+export default Navbar;
