@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Cute</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f0f0f0;
+    }
+    .login-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: relative;
+      width: 320px;
+    }
+    .eye-container {
+      position: absolute;
+      top: -50px;
+      left: calc(50% - 30px);
+      width: 60px;
+      height: 30px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .eye {
+      width: 25px;
+      height: 25px;
+      background: #fff;
+      border: 2px solid #333;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+    }
+    .pupil {
+      width: 10px;
+      height: 10px;
+      background: #333;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .login-box input {
+      display: block;
+      width: 100%;
+      padding: 0.6rem;
+      margin: 0.8rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 0.8rem;
+      background: #5c6ac4;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <div class="eye-container">
+      <div class="eye"><div class="pupil"></div></div>
+      <div class="eye"><div class="pupil"></div></div>
+    </div>
+    <h2>Welcome Back!</h2>
+    <input type="text" placeholder="Email" />
+    <input type="password" placeholder="Password" />
+    <button>Log In</button>
+  </div>
+
+  <script>
+    const eyes = document.querySelectorAll('.eye');
+    document.addEventListener('mousemove', (e) => {
+      eyes.forEach(eye => {
+        const pupil = eye.querySelector('.pupil');
+        const rect = eye.getBoundingClientRect();
+        const eyeX = rect.left + rect.width / 2;
+        const eyeY = rect.top + rect.height / 2;
+        // vector from eye center to cursor
+        const dx = e.clientX - eyeX;
+        const dy = e.clientY - eyeY;
+        const angle = Math.atan2(dy, dx);
+        // ระยะ maximum ที่ pupil จะเคลื่อนภายใน eye
+        const maxDist = (rect.width / 2) - (pupil.offsetWidth / 2);
+        const px = Math.cos(angle) * maxDist;
+        const py = Math.sin(angle) * maxDist;
+        pupil.style.transform = `translate(${px}px, ${py}px)`;
+      });
+    });
+  </script>
+</body>
+</html>
