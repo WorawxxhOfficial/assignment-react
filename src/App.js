@@ -1,15 +1,18 @@
-import Navbar from "./features/Navbar";
-import Container from "./features/Container"; 
-import Home from "./features/Home";
-import { Fragment } from "react/jsx-runtime";
+import React from 'react';
+
+import Navbar from './features/Navbar';
+import Container from './features/Container';
+import Home from './features/Home';
+import GlobalStyle from './features/GlobalStyle';
 
 function App() {
   return (
-      <>
-    <Navbar />
-    <Container>
-      <Home />
-    </Container>
+    <>
+      <GlobalStyle />
+      <Navbar />
+      <Container>
+        <Home />
+      </Container>
     </>
   );
 }
