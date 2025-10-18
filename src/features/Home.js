@@ -1,53 +1,22 @@
+import Product from "./Product";
+import styled from "styled-components";
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
-import Product from './Product';
-import AddForm from './Product/AddForm';
-
-let currentProductId = 9;
-
-function Home({ className }) {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    async function getProducts() {
-      const products = await axios.get(
-        'https://68eb2acf76b3362414ccfcd5.mockapi.io/Products'
-      );
-      setProducts(products.data);
-    }
-
-    getProducts();
-  }, []);
-
-  function addProduct(product) {
-    const newProduct = { id: ++currentProductId, ...product };
-    setProducts([...products, newProduct]);
-  }
-
+function Home({ className, products }) {
   return (
+    // <>
     <div className={className}>
       <h1>New Products</h1>
-      {products.length > 0 ? (
         <ul className="Home__products">
           {products.map((product) => (
             <Product key={product.id} item={product} />
           ))}
         </ul>
-      ) : (
-        <div>Loading products....</div>
-      )}
-      <AddForm addProduct={addProduct} />
+      {/* <AddForm addProduct={addProduct} /> */}
     </div>
+    //  </> 
   );
 }
-
-Home.propTypes = {
-  className: PropTypes.string.isRequired,
-};
 
 export default styled(Home)`
   .Home__products {

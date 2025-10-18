@@ -1,23 +1,28 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
-function AddForm({ addProduct }) {
+
+function UpdateForm({ updateProduct }) {
   const [name, setName] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [type, setType] = useState("");
 
-  function handleSubmit(event){
-    event.preventDefault()
-    addProduct({ name, type, imageURL });
-
-  }
+  const { id } = useParams();
+  console.log(id);
 
   return (
     <>
-      <h1>Add Product</h1>
-      <form id="create-form" onSubmit={handleSubmit}>
+      <h1>Update Product</h1>
+      <form id="create-form">
         <div className="input-group">
           <label htmlFor="name">Name</label>
-          <input name="name" type="text" id="name" value={name} onChange={(event) => setName(event.target.value)} />
+          <input
+            name="name"
+            type="text"
+            id="name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
         </div>
 
         <div className=" input-group">
@@ -30,11 +35,13 @@ function AddForm({ addProduct }) {
           <input name="type" type="text" id="type" value={type} onChange={(event) => setType(event.target.value)} />
         </div>
 
-        <button type="submit">Add product</button>
+        <button type="button" className="UpdateForm__delete-button">
+          Delete restaurant
+        </button>
+        <button type="submit">Update product</button>
       </form>
     </>
   );
-
 }
 
-export default AddForm;
+export default UpdateForm;
