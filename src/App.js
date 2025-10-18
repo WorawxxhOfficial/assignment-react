@@ -8,7 +8,7 @@ import GlobalStyle from './features/GlobalStyle';
 function App() {
   return (
     <>
-      <GlobalStyle />
+      <GlobalStyle /  >
       <Navbar />
       <Container>
         <Home />
