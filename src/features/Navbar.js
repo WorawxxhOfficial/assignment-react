@@ -1,16 +1,21 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
-function Navbar({ className }) {
+function Navbar({className}) {
   return (
+  
     <header className={className}>
-      <Link href="/" className="brand">
+      <a href="/" className="brand">
         Trendie
-      </Link>
-      <Link to="/create-product">Create product</Link>
+      </a>
+    <Link to="/create-product">Create Product</Link>
     </header>
   );
 }
+
+Navbar.propTypes = {
+  className: PropTypes.string,
+};
 
 export default styled(Navbar)`
   height: 48px;

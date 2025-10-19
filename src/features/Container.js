@@ -1,9 +1,16 @@
-import React from "react";
 import styled from "styled-components";
-
-function Container({ className, children }) {
-  return <main className={className}>{children}</main>;
+import PropTypes from "prop-types";
+function Container({ children , className}) {
+  return (
+    <main className={className}>
+      {children}
+    </main>
+  );
 }
+
+Container.propTypes = {
+  Container: PropTypes.string,
+};
 
 export default styled(Container)`
   max-width: 1200px;

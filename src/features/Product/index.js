@@ -1,12 +1,18 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-
-function Product({className,item}) {
+const Product = ({ item, className }) => {
   const productImage = require(`../../assets/${item.imageURL}`);
+
 
   return (
     <li className={className}>
+      {/* <a href={`/update-product/${item.id}`}>
+        <img className="Products__image" src={productImage} alt={item.name} />
+        <div className="Products__name">{item.name}</div>
+        <small className="Products__type">{item.type}</small>
+      </a> */}
       <Link to={`/update-product/${item.id}`}>
         <img className="Products__image" src={productImage} alt={item.name} />
         <div className="Products__name">{item.name}</div>
@@ -14,7 +20,17 @@ function Product({className,item}) {
       </Link>
     </li>
   );
-}
+};
+
+Product.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    imageURL: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
 export default styled(Product)`
   padding-right: 12px;
   padding-bottom: 36px;
@@ -43,6 +59,3 @@ export default styled(Product)`
     border-radius: 8px;
   }
 `;
-
-
-
